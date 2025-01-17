@@ -1,1 +1,1 @@
-Container which eluminate telegram webhook.
+Container which illuminates telegram webhook.
