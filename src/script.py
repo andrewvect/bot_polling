@@ -26,14 +26,16 @@ def send_updates(updates: List[Dict[str, str]]) -> None:
     """Send updates to local server"""
     for update in updates:
         try:
-            response = requests.post(f"http://localhost:{PORT}/{WEBHOOK_URL}", json=update)
+            response = requests.post(f"http://host.docker.internal:{PORT}/{WEBHOOK_URL}", json=update)
             response.raise_for_status()
         except requests.RequestException as e:
+            logging.error(f"Error sending update: {e}")
             pass
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO)
     logging.info("Starting the bot...")
+    logging.info(f"Forwarding updates to local server {PORT}")
 
     offset = None
     while True:
