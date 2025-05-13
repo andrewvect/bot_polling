@@ -4,12 +4,15 @@ import requests
 import time
 from typing import Dict, List
 
-from config import BOT_TOKEN, PORT, WEBHOOK_URL
+from config import BOT_TOKEN, PORT, WEBHOOK_URL, TESTING
 
 
 def get_updates(offset: int = None) -> list[dict]:
     """Get updates from Telegram server"""
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
+    if TESTING:
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/test/getUpdates"
+    else:
+        url = f"https://api.telegram.org/bot{BOT_TOKEN}/getUpdates"
     params = {"timeout": 30}  # Long polling timeout
     if offset:
         params["offset"] = offset
