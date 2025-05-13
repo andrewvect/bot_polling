@@ -9,3 +9,4 @@ except KeyError:
 
 PORT = int(os.getenv("PORT", 3000))
 WEBHOOK_URL = os.getenv("WEBHOOK_URL", 'webhook')
+TESTING = os.getenv("TESTING", False)
